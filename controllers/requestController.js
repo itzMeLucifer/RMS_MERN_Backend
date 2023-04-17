@@ -8,16 +8,20 @@ export const requestController = {
     createRequest : async(req,res) => {
         try {
             const file = req.files?.originalFile
+            console.log(file)
             imageCloud.config({
                 cloud_name: process.env.IMAGGE_CLOUD_NAME,
                 api_key: process.env.IMAGGE_CLOUD_API_KEY,
                 api_secret: process.env.IMAGGE_CLOUD_API_SECRET
             });
+            console.log(1)
             if(file){
+                console.log(2)
                 const res = await imageCloud.uploader.upload(file.tempFilePath)
                 req.body.fileUrl = res.url
                 req.body.filePublicId=res.public_id
             }
+            console.log(3)
             const newRequest = new REQUESTS({...req.body});
             const savedRequest = await newRequest.save();
             var user = await USERS.findById(req.user.id)
