@@ -1,11 +1,23 @@
 import REQUESTS from '../models/request.js'
 import USERS from '../models/user.js';
 import PRODUCTS from '../models/product.js'
-import ISSUES from '../models/issue.js'
+import cloudinary from 'cloudinary'
+const imageCloud = cloudinary.v2
 
 export const requestController = {
     createRequest : async(req,res) => {
         try {
+            const file = req.files?.originalFile
+            imageCloud.config({
+                cloud_name: process.env.IMAGGE_CLOUD_NAME,
+                api_key: process.env.IMAGGE_CLOUD_API_KEY,
+                api_secret: process.env.IMAGGE_CLOUD_API_SECRET
+            });
+            if(file){
+                const res = await imageCloud.uploader.upload(file.tempFilePath)
+                req.body.fileUrl = res.url
+                req.body.filePublicId=res.public_id
+            }
             const newRequest = new REQUESTS({...req.body});
             const savedRequest = await newRequest.save();
             var user = await USERS.findById(req.user.id)
@@ -13,6 +25,7 @@ export const requestController = {
             
             return res.status(200).json({request:savedRequest});
         } catch (error) {
+            console.log(error.message)
             return res.status(500).json({msg:error.message});
         }
     },

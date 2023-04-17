@@ -10,6 +10,14 @@ const requestSchema  = mongoose.Schema({
     issueType:{
         type:Array
     },
+    fileUrl:{
+        type:String,
+        default:''
+    },
+    filePublicId:{
+        type:String,
+        default:''
+    },
     desc:{
         type:String
     },
