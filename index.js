@@ -8,6 +8,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import fileupload from 'express-fileupload'
 
 import authRoutes from './routes/authRoutes.js'
 import productRoutes from './routes/productRoutes.js'
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('common'));
+app.use(fileupload({ useTempFiles:true}))
 
 app.use('/api',authRoutes)
 app.use('/api/products',productRoutes)
