@@ -13,7 +13,6 @@ export const requestController = {
             
             return res.status(200).json({request:savedRequest});
         } catch (error) {
-            console.log(error.message)
             return res.status(500).json({msg:error.message});
         }
     },

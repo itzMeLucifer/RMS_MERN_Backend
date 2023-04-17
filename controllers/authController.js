@@ -29,7 +29,6 @@ export const authController = {
 
             res.json({msg: "Login success!",token:access_token,user:{username:user.username,id:user._id}})
         } catch (err) {
-            console.log(err.message)
             return res.status(500).json({msg:'Something went wrong please try again later.'})
         }
     }
