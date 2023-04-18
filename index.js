@@ -22,20 +22,11 @@ app.use(bodyParser.urlencoded({limit:'30mb', extended:true}))
 app.use(cors({
     origin:"https://rmsmern.netlify.app/"
 }));
+
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('common'));
 app.use(fileupload({ useTempFiles:true}))
-
-app.use((req,res,next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Max-Age", "1800");
-    res.setHeader("Access-Control-Allow-Headers", "content-type");
-    res.setHeader("Access-Control-Allow-Methods", 'POST,GET,DELETE,PUT,OPTIONS,PATCH')
-    return next();
-})
-
 
 app.use('/api',authRoutes)
 app.use('/api/products',productRoutes)
