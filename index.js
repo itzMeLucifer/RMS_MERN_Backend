@@ -19,16 +19,14 @@ const app = express();
 
 app.use(bodyParser.json({limit:'30mb', extended:true}));
 app.use(bodyParser.urlencoded({limit:'30mb', extended:true}))
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('common'));
 app.use(fileupload({ useTempFiles:true}))
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
 
 app.use('/api',authRoutes)
 app.use('/api/products',productRoutes)
