@@ -27,6 +27,14 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(fileupload({ useTempFiles:true}))
 
+app.use((req,res,next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Max-Age", "1800");
+    res.setHeader("Access-Control-Allow-Headers", "content-type");
+    return next();
+})
+
 
 app.use('/api',authRoutes)
 app.use('/api/products',productRoutes)
