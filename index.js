@@ -25,11 +25,6 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(fileupload({ useTempFiles:true}))
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
 
 app.use('/api',authRoutes)
 app.use('/api/products',productRoutes)
