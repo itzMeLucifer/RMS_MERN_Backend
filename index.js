@@ -26,7 +26,7 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(fileupload({ useTempFiles:true}))
 
-app.use('/api',authRoutes)
+app.use('/',authRoutes)
 app.use('/api/products',productRoutes)
 app.use('/api/issues',issueRoutes)
 app.use('/api/requests',requestRouter)
