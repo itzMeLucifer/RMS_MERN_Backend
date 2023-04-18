@@ -6,6 +6,7 @@ export const authController = {
         try{
             return res.status(200).json({msg:'Working'})
         }catch(error){
+            console.log(error.message)
             return res.status(500).json({msg:error.message})
         }
     },
@@ -29,6 +30,7 @@ export const authController = {
 
             res.json({msg: "Login success!",token:access_token,user:{username:user.username,id:user._id}})
         } catch (err) {
+            console.log(err.message)
             return res.status(500).json({msg:'Something went wrong please try again later.'})
         }
     }

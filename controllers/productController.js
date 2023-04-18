@@ -6,6 +6,7 @@ export const productController = {
             const products = await PRODUCTS.find();
             return res.status(200).json(products)
         } catch (error) {
+            console.log(error.message)
             return res.status(500).json({msg:error.message})
         }
     }

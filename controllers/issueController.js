@@ -12,6 +12,7 @@ export const issueController = {
             }
             return res.status(200).json({issues:result}) 
         } catch (error) {
+            console.log(error.message)
             return res.status(500).json({msg:error.message})
         }
 

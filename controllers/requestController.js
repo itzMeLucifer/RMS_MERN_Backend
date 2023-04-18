@@ -42,6 +42,7 @@ export const requestController = {
             return res.status(200).json({requests:[...requests]})
         }
         catch(error){
+            console.log(error.message)
             return res.status(500).json({msg:error.message})
         }
     },
@@ -76,12 +77,18 @@ export const requestController = {
         }
     },
     getEmployeeRequests: async(req,res) => {
-        const user = await USERS.findById(req.params.id)
-        if(!user)
-            return res.status(400).json({msg:'This user does not exist.'})
-
-        const requests = await REQUESTS.find({supportPersonId:req.params.id})
-        return res.status(200).json({requests})
+        try {
+            const user = await USERS.findById(req.params.id)
+            if(!user)
+                return res.status(400).json({msg:'This user does not exist.'})
+    
+            const requests = await REQUESTS.find({supportPersonId:req.params.id})
+            return res.status(200).json({requests})
+        } catch (error) {
+            console.log(error.message)
+            return res.status(500).json({msg:error.message})
+            
+        }
     },
     getAllRequests: async(req,res) => {
         try{
@@ -91,6 +98,7 @@ export const requestController = {
             return res.status(200).json({requests:requests})
         }
         catch(error){
+            console.log(error.message)
             return res.status(500).json({msg:error.message})
         }
     },
@@ -103,6 +111,7 @@ export const requestController = {
             const updatedRequest = await REQUESTS.findById(req.body._id)
             return res.status(200).json(updatedRequest)
         } catch (error) {
+            console.log(error.message)
             return res.status(500).json({msg:error.message})
         }
     }
