@@ -6,6 +6,9 @@ const imageCloud = cloudinary.v2
 
 export const requestController = {
     createRequest : async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
             const file = req.files?.originalFile
             imageCloud.config({
@@ -30,6 +33,9 @@ export const requestController = {
         }
     },
     getMyRequests: async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try{
             const user = await USERS.findById(req.params.id)
             if(!user)
@@ -47,6 +53,9 @@ export const requestController = {
         }
     },
     getInfo: async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try{
             const request = await REQUESTS.findById(req.params.id)
             if(!request)
@@ -60,6 +69,9 @@ export const requestController = {
         }
     },
     getInfoForAdmin : async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try{
             const request = await REQUESTS.findById(req.params.id)
             if(!request)
@@ -77,6 +89,9 @@ export const requestController = {
         }
     },
     getEmployeeRequests: async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
             const user = await USERS.findById(req.params.id)
             if(!user)
@@ -91,6 +106,9 @@ export const requestController = {
         }
     },
     getAllRequests: async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try{
             var requests = await REQUESTS.find()
             if(!requests)
@@ -103,6 +121,9 @@ export const requestController = {
         }
     },
     updateRequest: async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
             const oldRequest = await REQUESTS.findById(req.body._id)
             if(!oldRequest)

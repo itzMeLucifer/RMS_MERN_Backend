@@ -2,6 +2,9 @@ import ISSUES from '../models/issue.js'
 
 export const issueController = {
     getIssues : async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
             const issues = await ISSUES.find({productId:req.params.id});
             if(!issues)

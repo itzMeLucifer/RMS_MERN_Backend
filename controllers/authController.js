@@ -3,6 +3,9 @@ import {authHelper} from '../helpers/authHelper.js'
 
 export const authController = {
     defaultPath: async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try{
             return res.status(200).json({msg:'Working'})
         }catch(error){
@@ -11,6 +14,9 @@ export const authController = {
         }
     },
     logIn: async(req,res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', '*');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
             const {username,password,userType} = req.body
             if(!username || !password || userType === null){
